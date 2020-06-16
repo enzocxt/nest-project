@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package school;
+
+import "google/protobuf/empty.proto";
+
+service SchoolService {
+  rpc FindOne (SchoolById) returns (School) {}
+  rpc FindAll (google.protobuf.Empty) returns (SchoolList) {}
+  rpc Create (School) returns (School) {}
+  rpc Follow (StudentFollowSchool) returns (StudentFollowSchool) {}
+}
+
+message SchoolById {
+  int32 id = 1;
+}
+
+message School {
+  int32 id = 1;
+  string name = 2;
+  string alphaTwoCode = 3;
+  string country = 4;
+}
+
+message SchoolList {
+  repeated School schools = 1;
+}
+
+message StudentFollowSchool {
+  int32 schoolId = 1;
+  int32 studentId = 2;
+}
